@@ -1,2 +1,0 @@
-# wheremymoney
-Created with CodeSandbox
