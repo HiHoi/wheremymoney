@@ -2,142 +2,44 @@
 <html>
 
 <head>
-  <title>Parcel Sandbox</title>
-  <meta charset="UTF-8" />
-  <style>
-    table,
-    tr,
-    th,
-    td {
-      border: solid 1px black;
-      border-collapse: collapse;
-    }
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <style>
+        table,
+        tr,
+        th,
+        td {
+            border: solid 1px black;
+            border-collapse: collapse;
+        }
 
-    .weeklyBill {
-      text-align: right;
-    }
-  </style>
+        .weeklyBill {
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="writeMoney">
-    오늘 사용한 돈 : <input type="text" id="dailyMoney" />
-    <button type="button" onclick="init()">입력</button>
-  </div>
-  <div class="recordMoney">
+    <h1>오늘 쓴 돈:</h1>
+    <div id="writeMoney"></div>
+    <div id="btn"></div>
     <table>
-      <thead>
-        <tr>
-          <th>일요일</th>
-          <th>월요일</th>
-          <th>화요일</th>
-          <th>수요일</th>
-          <th>목요일</th>
-          <th>금요일</th>
-          <th>토요일</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="weeklyBill">
-          <td id="0">공백</td>
-          <td id="1">공백</td>
-          <td id="2">공백</td>
-          <td id="3">공백</td>
-          <td id="4">공백</td>
-          <td id="5">공백</td>
-          <td id="6">공백</td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>일요일</th>
+                <th>월요일</th>
+                <th>화요일</th>
+                <th>수요일</th>
+                <th>목요일</th>
+                <th>금요일</th>
+                <th>토요일</th>
+            </tr>
+        </thead>
+        <tbody id="recordMoney">
+        </tbody>
     </table>
-  </div>
 
-  <script>
-    //가계부 프로그램 만들기
-    //하루에 쓴 돈을 적어서 매일 기록하는 방식
-    // + 쓴 내역을 분류하여 낭비를 강조하는 기능
-    // + 자동으로 사용내역을 감지하여 낭비를 줄이는 기능
-
-    //오늘 날짜에 맞게 일주일 가계부에 출력하기
-    function recordWeekly() {
-      //input 값 입력받고 출력하기
-      const inputMoney = document.querySelector("#dailyMoney");
-      //오늘 날짜 탐색
-      const date = new Date();
-      const day = date.getDay();
-      const Sun = document.getElementById(0),
-        Mon = document.getElementById(1),
-        Tue = document.getElementById(2),
-        Wed = document.getElementById(3),
-        Thu = document.getElementById(4),
-        Fri = document.getElementById(5),
-        Sat = document.getElementById(6);
-      //탐색한 날짜에 맞게 테이블 안에 값 넣기(더 깔끔한 표현법 알아보기)
-      if (day == Sun.id) {
-        document.getElementById(0).innerHTML = inputMoney.value;
-      } else if (day == Mon.id) {
-        document.getElementById(1).innerHTML = inputMoney.value;
-      } else if (day == Tue.id) {
-        document.getElementById(2).innerHTML = inputMoney.value;
-      } else if (day == Wed.id) {
-        document.getElementById(3).innerHTML = inputMoney.value;
-      } else if (day == Thu.id) {
-        document.getElementById(4).innerHTML = inputMoney.value;
-      } else if (day == Fri.id) {
-        document.getElementById(5).innerHTML = inputMoney.value;
-      } else if (day == Sat.id) {
-        document.getElementById(6).innerHTML = inputMoney.value;
-      }
-    }
-    //입력한 날짜 저장
-    function saveDay() {
-      //날짜표시
-      const date = new Date();
-      let days = date.getDay();
-      
-      localStorage.setItem('Day', days)
-    }
-    //입력한 값 저장
-    function saveBills(billObj) {
-      //input 값 입력받고 출력하기
-      const inputMoney = document.querySelector("#dailyMoney").value;
-      //로컬스토리지에 저장
-      localStorage.setItem('Bill', inputMoney)
-    }
-
-    //저장한 값 불러오기(아직 구현 X)
-    function loadBill() {
-      let day = localStorage.getItem('Day');
-      let bill = localStorage.getItem('Bill')
-      const Sun = document.getElementById(0),
-        Mon = document.getElementById(1),
-        Tue = document.getElementById(2),
-        Wed = document.getElementById(3),
-        Thu = document.getElementById(4),
-        Fri = document.getElementById(5),
-        Sat = document.getElementById(6);
-      if (day == Sun.id) {
-        document.getElementById(0).innerHTML = bill
-      } else if (day == Mon.id) {
-        document.getElementById(1).innerHTML = bill
-      } else if (day == Tue.id) {
-        document.getElementById(2).innerHTML = bill
-      } else if (day == Wed.id) {
-        document.getElementById(3).innerHTML = bill
-      } else if (day == Thu.id) {
-        document.getElementById(4).innerHTML = bill
-      } else if (day == Fri.id) {
-        document.getElementById(5).innerHTML = bill
-      } else if (day == Sat.id) {
-        document.getElementById(6).innerHTML = bill
-      }
-    }
-    function init() {
-      recordWeekly();
-      saveBills()
-      saveDay()
-    }
-    loadBill();
-  </script>
+    <script src="index.js"></script>
 </body>
 
 </html>
